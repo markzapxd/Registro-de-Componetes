@@ -1,7 +1,7 @@
 #ifndef INDUTOR_H
 #define INDUTOR_H
 
-#include "DadosCSV.h"
+#include "../DadosCSV.h"
 #include <string>
 #include <vector>
 

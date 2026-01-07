@@ -7,15 +7,14 @@ arquivo: DisplayOLED.h
 #ifndef DISPLAYOLED_H
 #define DISPLAYOLED_H
 
-
-#include "../Display/Display.h"
-#include "../dados_csv/dados_csv.h"
+#include "Display.h"
+#include "../Dados.h"
 
 class DisplayOLED : public Display{
 	
 	private:
-		int obterCodigo();
-		double obterValor();
+		std::string obterCodigo();
+		std::string obterValor();
 		std::string obterInterface();//atributo1
 		std::string obterResolucao();//atributo2
 		std::string obterCor();//atributo3

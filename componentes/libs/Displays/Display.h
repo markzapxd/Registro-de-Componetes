@@ -6,7 +6,7 @@ arquivo: Display.h
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include "../dados_csv/dados_csv.h" 
+#include "../Dados.h" 
 
 class Display {
 public:

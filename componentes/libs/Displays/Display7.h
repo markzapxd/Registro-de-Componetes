@@ -6,15 +6,14 @@ arquivo: Display7.h
 #ifndef DISPLAY7_H
 #define DISPLAY7_H
 
-
-#include "../Display/Display.h"
-#include "../dados_csv/dados_csv.h"
+#include "Display.h"
+#include "../Dados.h"
 
 class Display7 : public Display{
 	
 	private:
-		int obterCodigo();
-		double obterValor();
+		std::string obterCodigo();
+		std::string obterValor();
 		std::string obterPadrao();//atributo1 anodo ou catodo
 		std::string obterCor();//atributo2
 		std::string obterDigitos();//atributo3

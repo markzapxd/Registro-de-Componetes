@@ -1,5 +1,6 @@
 #include "GerenciadorComponentes.h"
 #include <iostream>
+#include <sstream>
 
 GerenciadorComponentes::GerenciadorComponentes(string nomeArq) {
     nomeArquivo = nomeArq;
@@ -15,7 +16,7 @@ void GerenciadorComponentes::adicionar(dadosCSV dados) {
 }
 
 void GerenciadorComponentes::escreverCabecalho(ofstream& arquivo) {
-    arquivo << "Codigo,Tipo,Modelo,Valor,BandaPassante,ImpedanciaEntrada,TensaoOffset\n";
+    arquivo << "Codigo,Tipo,Modelo,Valor,Atributo1,Atributo2,Atributo3\n";
 }
 
 void GerenciadorComponentes::salvarEmArquivo() {

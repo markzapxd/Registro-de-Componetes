@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <cctype>
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 UnidadeIndutancia::UnidadeIndutancia() : unidade("H") {}
 
@@ -42,9 +44,13 @@ ResultadoIndutancia UnidadeIndutancia::interpretar(const std::string &orig) {
 }
 
 std::string UnidadeIndutancia::formatar(double h) {
-    if (h >= 1) return std::to_string(h) + " H";
-    if (h >= 1e-3) return std::to_string(h * 1e3) + " mH";
-    if (h >= 1e-6) return std::to_string(h * 1e6) + " uH";
-    if (h >= 1e-9) return std::to_string(h * 1e9) + " nH";
-    return std::to_string(h) + " H";
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2);
+    
+    if (h >= 1) { oss << h << " H"; return oss.str(); }
+    if (h >= 1e-3) { oss << h * 1e3 << " mH"; return oss.str(); }
+    if (h >= 1e-6) { oss << h * 1e6 << " uH"; return oss.str(); }
+    if (h >= 1e-9) { oss << h * 1e9 << " nH"; return oss.str(); }
+    oss << h << " H";
+    return oss.str();
 }

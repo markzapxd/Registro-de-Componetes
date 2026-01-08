@@ -33,7 +33,7 @@ using namespace std;
 
 dadosCSV converterParaDadosCSV(const DadosCSV& d) {
     dadosCSV resultado;
-    resultado.codigo = d.codigo;
+    resultado.codigo = d.codigo; //d de dados csv
     resultado.tipoComponente = d.tipo;
     resultado.modelo = d.modelo;
     resultado.valor = d.valor;
@@ -129,10 +129,8 @@ int lerOpcao() {
 }
 
 void exibirMenuPrincipal() {
-    cout << "========================================\n";
     cout << "   SISTEMA DE CADASTRO DE COMPONENTES  \n";
     cout << "           ELETRONICOS                 \n";
-    cout << "========================================\n";
     cout << "\n";
     cout << "  [1] Cadastrar novo componente\n";
     cout << "  [2] Listar todos os componentes\n";
@@ -141,49 +139,42 @@ void exibirMenuPrincipal() {
     cout << "  [5] Remover componente\n";
     cout << "  [0] Sair\n";
     cout << "\n";
-    cout << "========================================\n";
 }
 
 void exibirMenuCadastro() {
-    cout << "\n========================================\n";
     cout << "    SELECIONE O TIPO DE COMPONENTE     \n";
-    cout << "========================================\n";
     cout << "\n";
-    cout << "  --- INDUTORES ---\n";
+    cout << "   INDUTORES \n";
     cout << "  [1] Indutor Toroidal\n";
     cout << "  [2] Indutor Bobina de Ar\n";
     cout << "  [3] Indutor Ferrite\n";
     cout << "\n";
-    cout << "  --- AMPLIFICADORES OPERACIONAIS ---\n";
+    cout << "   AMPLIFICADORES OPERACIONAIS \n";
     cout << "  [4] Amplificador Inversor\n";
     cout << "  [5] Amplificador Nao-Inversor\n";
     cout << "  [6] Amplificador Diferencial\n";
     cout << "\n";
-    cout << "  --- CAPACITORES ---\n";
+    cout << "   CAPACITORES \n";
     cout << "  [7] Capacitor Ceramico\n";
     cout << "  [8] Capacitor Eletrolitico\n";
     cout << "  [9] Capacitor Tantalum\n";
     cout << "\n";
-    cout << "  --- DISPLAYS ---\n";
+    cout << "   DISPLAYS \n";
     cout << "  [10] Display 7 Segmentos\n";
     cout << "  [11] Display LCD\n";
     cout << "  [12] Display OLED\n";
     cout << "\n";
     cout << "  [0] Voltar ao menu principal\n";
     cout << "\n";
-    cout << "========================================\n";
 }
 
 void exibirMenuBusca() {
-    cout << "\n========================================\n";
     cout << "         OPCOES DE BUSCA               \n";
-    cout << "========================================\n";
     cout << "\n";
     cout << "  [1] Buscar por codigo\n";
     cout << "  [2] Buscar por tipo\n";
     cout << "  [0] Voltar\n";
     cout << "\n";
-    cout << "========================================\n";
 }
 
 void cadastrarComponente(GerenciadorComponentes& gerenciador) {
@@ -323,11 +314,11 @@ void cadastrarComponente(GerenciadorComponentes& gerenciador) {
             case 0:
                 return;
             default:
-                cout << "\n[ERRO] Opcao invalida!\n";
+                cout << "\nOpcao invalida!\n";
         }
         
         if (cadastrado) {
-            cout << "\n[SUCESSO] Componente cadastrado com sucesso!\n";
+            cout << "\nComponente cadastrado com sucesso!\n";
             cadastrado = false;
         }
         
@@ -341,9 +332,7 @@ void cadastrarComponente(GerenciadorComponentes& gerenciador) {
 void listarComponentes(GerenciadorComponentes& gerenciador) {
     limparTela();
     
-    cout << "========================================\n";
     cout << "      LISTA DE COMPONENTES             \n";
-    cout << "========================================\n\n";
     
     int total = gerenciador.obterTamanho();
     
@@ -388,7 +377,7 @@ void listarComponentes(GerenciadorComponentes& gerenciador) {
                 ExibidorComponente exibidor;
                 exibidor.exibir(componentes[indice]);
             } else {
-                cout << "[ERRO] Indice invalido!\n";
+                cout << "Indice invalido!\n";
             }
         }
     }
@@ -422,17 +411,15 @@ void buscarComponente(GerenciadorComponentes& gerenciador) {
         case 0:
             return;
         default:
-            cout << "[ERRO] Opcao invalida!\n";
+            cout << "Invalido!\n";
             pausar();
             return;
     }
     
-    cout << "\n========================================\n";
     cout << "       RESULTADOS DA BUSCA             \n";
-    cout << "========================================\n\n";
     
     if (resultados.empty()) {
-        cout << "[INFO] Nenhum componente encontrado.\n";
+        cout << "Nenhum encontrado.\n";
     } else {
         cout << "Encontrados: " << resultados.size() << " componente(s)\n\n";
         
@@ -449,14 +436,13 @@ void buscarComponente(GerenciadorComponentes& gerenciador) {
 void editarComponente(GerenciadorComponentes& gerenciador) {
     limparTela();
     
-    cout << "========================================\n";
+
     cout << "        EDITAR COMPONENTE              \n";
-    cout << "========================================\n\n";
     
     int total = gerenciador.obterTamanho();
     
     if (total == 0) {
-        cout << "[INFO] Nenhum componente cadastrado para editar.\n";
+        cout << "Nenhum componente cadastrado para editar.\n";
         pausar();
         return;
     }
@@ -479,7 +465,7 @@ void editarComponente(GerenciadorComponentes& gerenciador) {
     }
     
     if (indice < 0 || indice >= total) {
-        cout << "[ERRO] Indice invalido!\n";
+        cout << "invalido!\n";
         pausar();
         return;
     }
@@ -487,7 +473,7 @@ void editarComponente(GerenciadorComponentes& gerenciador) {
     dadosCSV compAtual = gerenciador.obterPorIndice(indice);
     dadosCSV novosDados = compAtual;
     
-    cout << "\n--- Editando componente ---\n";
+    cout << "\nEditando componente\n";
     cout << "(Pressione ENTER para manter o valor atual)\n\n";
     
     string entrada;
@@ -528,7 +514,7 @@ void editarComponente(GerenciadorComponentes& gerenciador) {
     if (confirma == 'S' || confirma == 's') {
         gerenciador.editar(indice, novosDados);
     } else {
-        cout << "[INFO] Edicao cancelada.\n";
+        cout << "Edicao cancelada.\n";
     }
     
     pausar();
@@ -537,14 +523,12 @@ void editarComponente(GerenciadorComponentes& gerenciador) {
 void removerComponente(GerenciadorComponentes& gerenciador) {
     limparTela();
     
-    cout << "========================================\n";
     cout << "        REMOVER COMPONENTE             \n";
-    cout << "========================================\n\n";
     
     int total = gerenciador.obterTamanho();
     
     if (total == 0) {
-        cout << "[INFO] Nenhum componente cadastrado para remover.\n";
+        cout << "Nenhum componente cadastrado para remover.\n";
         pausar();
         return;
     }
@@ -568,7 +552,7 @@ void removerComponente(GerenciadorComponentes& gerenciador) {
     }
     
     if (indice < 0 || indice >= total) {
-        cout << "[ERRO] Indice invalido!\n";
+        cout << "invalido!\n";
         pausar();
         return;
     }
